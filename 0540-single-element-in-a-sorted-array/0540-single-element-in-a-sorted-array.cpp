@@ -3,23 +3,14 @@ public:
     int singleNonDuplicate(vector<int>& nums) {
         int n = nums.size();
         
-        for(int i = 0; i < n; i++){
-            if(n == 1)
-                return nums[0];
-            else if(i == 0){
-                if(nums[i] != nums[i+1])
-                    return nums[i];
-            }
-            else if(i == n-1){
-                if(nums[i] != nums[i-1])
-                    return nums[i];
-            }
-            else{
-                if(nums[i] != nums[i+1] && nums[i] != nums[i-1])
-                    return nums[i];
-            }
-                
+        int left = 0, right = nums.size()-1;
+        while(left < right){
+            int mid = (left + right)/2;
+            if( (mid % 2 == 0 && nums[mid] == nums[mid +1]) || (mid %2 == 1 &&                    nums[mid] == nums[mid - 1]) )
+                left = mid + 1;
+            else
+                right = mid;
         }
-        return -1;
+        return nums[left];
     }
 };
