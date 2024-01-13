@@ -1,6 +1,7 @@
 class Solution {
 public:
     int hIndex(vector<int>& citations) {
+        sort(citations.begin(),citations.end());
         int low = 0 , high = citations.size();
         while(low < high){
             int mid = (low+high+1)/2;
