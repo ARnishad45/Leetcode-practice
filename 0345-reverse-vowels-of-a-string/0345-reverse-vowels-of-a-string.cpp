@@ -1,44 +1,36 @@
-class Solution {
+class Solution 
+{
+	
 public:
-   bool isvowel(char ch) {
-    if (ch == 'a' || ch == 'A') {
-        return true;
-    } else if (ch == 'e' || ch == 'E') {
-        return true;
-    } else if (ch == 'i' || ch == 'I') {
-        return true;
-    } else if (ch == 'o' || ch == 'O') {
-        return true;
-    } else if (ch == 'u' || ch == 'U') {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-    string reverseVowels(string s) {
-    char arr[s.size() + 1]; // +1 for null terminator
-    strcpy(arr, s.c_str());
-    int left = 0;
-    int right = s.size() - 1;
-
-    while (left < right) {
-        char chl = arr[left];
-        char chr = arr[right];
-
-        if (isvowel(chl) && isvowel(chr)) {
-            swap(arr[left], arr[right]);
-            left++;
-            right--;
-        } else if (isvowel(chl)) {
-            right--;
-        } else if (isvowel(chr)) {
-            left++;
-        } else {
-            left++;
-            right--;
+    string reverseVowels(string s) 
+    {
+        int i = 0;
+        int j = s.size()-1;
+        
+        while(i<j)
+        {
+            bool flag1 = false, flag2 = false; 
+            
+            if(s[i]=='a' || s[i]=='e' || s[i]=='i' || s[i]=='o' || s[i]=='u' || s[i]=='A' || s[i]=='E' || s[i]=='I' || s[i]=='O' || s[i]=='U')
+            flag1 = true;
+            
+            if(s[j]=='a' || s[j]=='e' || s[j]=='i' || s[j]=='o' || s[j]=='u' || s[j]=='A' || s[j]=='E' || s[j]=='I' || s[j]=='O' || s[j]=='U')
+            flag2 = true;
+            
+            if(flag1 && flag2)  
+            {
+                swap(s[i],s[j]);
+                i++;
+                j--; 
+            }
+            
+            if(!flag1)  
+             i++;
+            
+            if(!flag2) 
+             j--;
         }
-    }
-    return string(arr);
-  }
+        
+        return s;
+    } 
 };
